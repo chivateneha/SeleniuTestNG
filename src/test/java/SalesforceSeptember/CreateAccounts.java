@@ -2,25 +2,31 @@ package SalesforceSeptember;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v115.browser.Browser;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class CreateAccounts extends BaseTest {
 
-	public static void main(String[] args) throws InterruptedException {
-	//	CreateNewAcc();
-	//	CreateNewViewLink();
-		//EditView();
-		//mergeAccounts();
-		CreateAccountReport();
-		
-	}
-	 
-	 public static void CreateNewAcc() {
+	@BeforeMethod()
+	public static void launchBrowser() {
 		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
+	    launchBrowser("chrome");
 		maximiseBrowser();
 		goToUrl("https://login.salesforce.com/");
+		
+	}
+	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	@Test
+	 public static void CreateNewAcc() {
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -28,10 +34,7 @@ public class CreateAccounts extends BaseTest {
 				enterText(passwordEle, "belgaum84", "password Textbox");
 		WebElement loginButtonEle = driver.findElement(By.id("Login"));
 				clickElement(loginButtonEle,"login button");
-			
-
-	
-	WebElement userName = driver.findElement(By.id("userNavLabel"));
+			WebElement userName = driver.findElement(By.id("userNavLabel"));
 	Assert.assertEquals(userName.getText(), "Neha Chivate");
 
 	//a[text()='Accounts']
@@ -57,14 +60,8 @@ public class CreateAccounts extends BaseTest {
 	System.out.println("Clicked on Save button");
 	}
 
-	 
-	 public static void CreateNewViewLink() {
-		 System.out.println("******login_to_SalesForce automation script started***********");
-			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
-			WebElement usernameEle = driver.findElement(By.id("username"));
+	 @Test
+	 public static void CreateNewViewLink() {			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");
 			WebElement passwordEle = driver.findElement(By.id("password"));
@@ -90,13 +87,10 @@ public class CreateAccounts extends BaseTest {
 					System.out.println("Clicked on save button");
 	 }
 	 
+	 
+	 @Test
 	 public static void EditView() {
-		 
-		 System.out.println("******login_to_SalesForce automation script started***********");
-			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
+		
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -134,15 +128,12 @@ public class CreateAccounts extends BaseTest {
 					
 					WebElement Savebtn = driver.findElement(By.xpath("//body[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]/div[2]/form[1]/div[3]/table[1]/tbody[1]/tr[1]/td[2]/input[1]"));
 					clickElement(Savebtn, "save button");
-					//driver.close();
+				
 	 }
 	 
+	 @Test
+	 
 	 public static void mergeAccounts() throws InterruptedException {
-		 System.out.println("******login_to_SalesForce automation script started***********");
-			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -177,13 +168,9 @@ public class CreateAccounts extends BaseTest {
 				    Thread.sleep(3000);
 				    switchtoAlert(driver);
 	 }
+	 
+	 @Test
 	 public static void CreateAccountReport() throws InterruptedException {
-		 
-		 System.out.println("******login_to_SalesForce automation script started***********");
-			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");

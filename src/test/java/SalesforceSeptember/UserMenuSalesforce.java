@@ -6,29 +6,32 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class UserMenuSalesforce extends BaseTest {
 
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		//usermenudropdownVerfy();
-		//ChangeLastNameOnMyProfile();
-		//PostFile();
-		//AddPhoto();
-		//MySettings();
-		//EmailLink();
-		PostLink();
-		//DeveloperConsol();
-		//logoutSfdc();
-		
-	}
-	public static void usermenudropdownVerfy() {
-		
+
+	@BeforeMethod()
+	public static void launchBrowser() {
 		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
+	    launchBrowser("chrome");
 		maximiseBrowser();
 		goToUrl("https://login.salesforce.com/");
+		
+	}
+	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	
+	@Test
+	
+	public static void usermenudropdownVerfy() {
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -41,16 +44,13 @@ public class UserMenuSalesforce extends BaseTest {
 				 waitForVisibility(userNameDropDown, 5, "usermenu dropdown");
 				 String dropdownverify=driver.findElement(By.xpath("//div[@id='userNav-menuItems']")).getText();
 					System.out.println(dropdownverify);
-					closeBrowser();
+				
 				}
 	
+	
+	@Test
+	
 	public static void ChangeLastNameOnMyProfile(){
-
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -81,12 +81,9 @@ public class UserMenuSalesforce extends BaseTest {
 				  
 	}
 	
+	
+	@Test
 	public static void PostLink() throws Exception { 
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -111,24 +108,20 @@ public class UserMenuSalesforce extends BaseTest {
 				 // waitForVisibility(PostLink, 4, "Post");
 				  switchFrame( postLinkIframe, "postbody");
 				  Thread.sleep(5000);
-				  WebElement postBody = driver.findElement(By.xpath("//html[1]/body[1]"));
+				  WebElement postBody = driver.findElement(By.cssSelector("body"));
 				  clickElement(postBody, "Post");  
-					enterText(postBody, "This is 2034", "PostText");
+				  Thread.sleep(5000);
+				  postBody.sendKeys("Welcome November");
 					SwitchTodefaultFrame(driver);
 					WebElement ShareButton = driver.findElement(By.xpath("//input[@id='publishersharebutton']"));
 					clickElement(ShareButton, "ShareButton");
 					System.out.println("Posted is shared");
-					//closeBrowser();
-				  
+					
 					
 				}
-	
+	@Test
 	public static void PostFile() throws InterruptedException {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		//String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
+			String expected="Home Page ~ Salesforce - Developer Edition";
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -165,12 +158,10 @@ public class UserMenuSalesforce extends BaseTest {
 		
 	}
 	
+	
+	@Test
+	
 	public static void AddPhoto() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -204,13 +195,11 @@ public class UserMenuSalesforce extends BaseTest {
 
 			}
 	
+	
+	@Test
+	
 	public static void MySettings() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
-		WebElement usernameEle = driver.findElement(By.id("username"));
+			WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
 		WebElement passwordEle = driver.findElement(By.id("password"));
@@ -250,12 +239,11 @@ public class UserMenuSalesforce extends BaseTest {
 				WebElement addButton = driver.findElement(By.xpath("//*[@id=\"duel_select_0_right\"]/img"));
 				addButton.click();
 	}
+	
+	
+	
+	@Test
 	public static void EmailLink() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -301,15 +289,13 @@ public class UserMenuSalesforce extends BaseTest {
 	WebElement openReminder = driver.findElement(By.className("btn"));
 	openReminder.click();
 	
-	closeBrowser();
 	}
 	
+	
+	
+	
+	@Test
 	public static void DeveloperConsol() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -333,29 +319,25 @@ public class UserMenuSalesforce extends BaseTest {
 				   
 				//driver.switchTo().window(window[1]).close();
 				//driver.switchTo().Window(developerconsole).
-				closeBrowser();
 				System.out.println("developerconsole completed");
 				
 	}
 				
 	}
-					public static void logoutSfdc() throws InterruptedException {
-						System.out.println("******login_to_SalesForce automation script started***********");
-						String expected="Home Page ~ Salesforce - Developer Edition";
-						launchBrowser("chrome");
-						maximiseBrowser();
-						goToUrl("https://login.salesforce.com/");
-						WebElement usernameEle = driver.findElement(By.id("username"));
-						     waitForVisibility(usernameEle, 5, 2, "username textbox");
-						        enterText(usernameEle,"chirag@home.com","username textbox");
-						WebElement passwordEle = driver.findElement(By.id("password"));
-								enterText(passwordEle, "belgaum84", "password Textbox");
-						WebElement loginButtonEle = driver.findElement(By.id("Login"));
-								clickElement(loginButtonEle,"login button");
-							
-				
+	
+	
+	@Test
+		public static void logoutSfdc() throws InterruptedException {
 					
-					WebElement userName = driver.findElement(By.id("userNavLabel"));
+					WebElement usernameEle = driver.findElement(By.id("username"));
+		     	     waitForVisibility(usernameEle, 5, 2, "username textbox");
+				   enterText(usernameEle,"chirag@home.com","username textbox");
+						WebElement passwordEle = driver.findElement(By.id("password"));
+					enterText(passwordEle, "belgaum84", "password Textbox");
+						WebElement loginButtonEle = driver.findElement(By.id("Login"));
+					clickElement(loginButtonEle,"login button");
+							
+				   WebElement userName = driver.findElement(By.id("userNavLabel"));
 					Assert.assertEquals(userName.getText(), "Neha Chivate");
 
 					WebElement usermenudropdown = driver.findElement(By.id("userNavButton"));
@@ -364,7 +346,7 @@ public class UserMenuSalesforce extends BaseTest {
 					WebElement userLogout = driver.findElement(By.xpath("//*[@id=\"userNav-menuItems\"]/a[5]"));
 					userLogout.click();
 					System.out.println("User Logged out of Salesforce");
-					closeBrowser();
+				
 	
 	}
 }

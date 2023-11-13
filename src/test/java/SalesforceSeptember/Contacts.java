@@ -2,25 +2,29 @@ package SalesforceSeptember;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class Contacts extends BaseTest {
 
-	public static void main(String[] args) throws Exception {
-		//createnewContact();
-		//createNewview();  //did not clear
-		//recentlyCreated();
-		//myContacts();
-		//viewContactName();
-		//ViewnameErrorMessage();
-		//checkingCancelButton();
-		newContactPage();
+	@BeforeMethod()
+	public static void launchBrowser() {
+		System.out.println("******login_to_SalesForce automation script started***********");
+	    launchBrowser("chrome");
+		maximiseBrowser();
+		goToUrl("https://login.salesforce.com/");
+		
 	}
+	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	@Test
 	public static void createnewContact() {
-	System.out.println("******login_to_SalesForce automation script started***********");
-	String expected="Home Page ~ Salesforce - Developer Edition";
-	launchBrowser("chrome");
-	maximiseBrowser();
-	goToUrl("https://login.salesforce.com/");
 	WebElement usernameEle = driver.findElement(By.id("username"));
 	     waitForVisibility(usernameEle, 5, 2, "username textbox");
 	        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -44,16 +48,10 @@ public class Contacts extends BaseTest {
 			
 		    WebElement save = driver.findElement(By.xpath(" //td[@id='bottomButtonRow']//input[@title='Save']"));
 		    clickElement(save, "SaveButton");
-				 
-			driver.close();
 
 }
+	@Test
 	public static void createNewview() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -81,18 +79,11 @@ public class Contacts extends BaseTest {
 				
 				WebElement save = driver.findElement(By.xpath("//div[@class='pbBottomButtons']//input[@title='Save']"));
 				clickElement(save, "SaveButton");
-				// driver.close();
-				 
-				 
-		
-	}
 	
+	}
+	@Test
 	public static void recentlyCreated() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
+	
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -107,14 +98,9 @@ public class Contacts extends BaseTest {
 				WebElement RecentlyCreatedoption = driver.findElement(By.xpath("//select[@id='hotlist_mode']"));
 				SelectfromDropDown(RecentlyCreatedoption, "Recently Created");	
 	}
-	
+	@Test
 	public static void myContacts() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
-		WebElement usernameEle = driver.findElement(By.id("username"));
+			WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
 		WebElement passwordEle = driver.findElement(By.id("password"));
@@ -132,13 +118,9 @@ public class Contacts extends BaseTest {
 				GoButton.click(); 
 	}
 	
-	
+	@Test
 	public static void viewContactName() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
+		
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -154,14 +136,8 @@ public class Contacts extends BaseTest {
 				clickElement(ContactNameclick, "Contact Name link");
 		
 	}
-	
+	@Test
 	public static void ViewnameErrorMessage() {
-		
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -184,13 +160,8 @@ public class Contacts extends BaseTest {
 				validateErrormsg(actualmsg, errormsg);
 		
 	}
-	
+	@Test
 	public static void checkingCancelButton() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -214,12 +185,8 @@ public class Contacts extends BaseTest {
 				clickElement(cancel, "cancel");
 	}
 	
+	@Test
 	public static void newContactPage() {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");

@@ -32,6 +32,9 @@ public class BaseTest {
 				
 			}
 		}
+		public static void getTitleOfPage() {
+			driver.getTitle();
+		}
 		
 		public static void goToUrl(String url) {
 			driver.get(url);

@@ -5,25 +5,31 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v116.browser.Browser;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class RandomScenarios extends BaseTest{
 
-	public static void main(String[] args) throws Exception {
-		//Verifylink();
-	//	UpdateLastname();
-		//customizeMyTabs();
-		//BlockCalenderEvent();
-		WeeklyRecurrencecheck();// 7:00pm doesnot select.
+	@BeforeMethod()
+	public static void launchBrowser() {
+		System.out.println("******login_to_SalesForce automation script started***********");
+	    launchBrowser("chrome");
+		maximiseBrowser();
+		goToUrl("https://login.salesforce.com/");
 		
 	}
 	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	@Test
 	public static void Verifylink() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
-		WebElement usernameEle = driver.findElement(By.id("username"));
+	
+			WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
 		WebElement passwordEle = driver.findElement(By.id("password"));
@@ -35,15 +41,12 @@ public class RandomScenarios extends BaseTest{
 		Thread.sleep(3000);
 		WebElement NameLink = driver.findElement(By.linkText("Neha Chivate"));
 		clickElement(NameLink, "NameLink");
-		Browser.close();
+		
 	}
 	
+	@Test
 	public static void UpdateLastname() throws InterruptedException {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
+		
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -70,12 +73,9 @@ public class RandomScenarios extends BaseTest{
 		 clickElement(SaveAllBtn, "Save All");
 	}
 	
+	
+	@Test
 	public static void customizeMyTabs() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -105,10 +105,7 @@ public class RandomScenarios extends BaseTest{
 			clickElement(Logout, "log out");
 			Thread.sleep(5000);
 		  
-		  
-		   
-		  
-		   WebElement Uname1=driver.findElement(By.id("username"));
+			WebElement Uname1=driver.findElement(By.id("username"));
 			enterText(Uname1, "chirag@home.com", "UserName");
 			WebElement pwd1=driver.findElement(By.id("password"));
 			enterText(pwd1, "belgaum84", "Password");
@@ -118,12 +115,8 @@ public class RandomScenarios extends BaseTest{
 		
 	}
 	
+	@Test
 	public static void BlockCalenderEvent() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -145,18 +138,10 @@ public class RandomScenarios extends BaseTest{
 		WebElement SaveBtn = driver.findElement(By.xpath("//body[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]/form[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/input[1]"));
 		clickElement(SaveBtn, "Save button");
 		Thread.sleep(8000);
-		
-		Browser.close();
 	}
 	
+	@Test
 	public static void WeeklyRecurrencecheck() throws InterruptedException {
-		
-		
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -198,14 +183,5 @@ public class RandomScenarios extends BaseTest{
 		enterText(endDate,"11/12/2023","End Date textbox");
 		WebElement save=driver.findElement(By.xpath("//td[@id='topButtonRow']//input[@title='Save']"));
 		clickElement(save,"save");
-		
-		
-	}
-
-	
-	
-	
-	
-	
-
+		}
 }

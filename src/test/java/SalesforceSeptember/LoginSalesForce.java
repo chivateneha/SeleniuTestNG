@@ -2,20 +2,33 @@ package SalesforceSeptember;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class LoginSalesForce extends BaseTest{
-
-	public static void main(String[] args) {
-		//validlogin_to_Salesforce();
-		//loginClearPassword();
-		RememberMe();
+	
+	@BeforeMethod()
+	public static void launchBrowser() {
+		System.out.println("******login_to_SalesForce automation script started***********");
+	    launchBrowser("chrome");
+		maximiseBrowser();
+		goToUrl("https://login.salesforce.com/");
+		
 	}
+	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	
+	
+
+	@Test
 		public static void validlogin_to_Salesforce() {
-			System.out.println("******login_to_SalesForce automation script started***********");
-			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
+		String expected="Home Page ~ Salesforce - Developer Edition";
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			waitForVisibility(usernameEle, 5, 2, "username textbox");
 			enterText(usernameEle,"chirag@home.com","username textbox");
@@ -34,16 +47,13 @@ public class LoginSalesForce extends BaseTest{
 					else {
 						System.out.println("home page is not Lunched");
 					}
-					closeBrowser();
-					System.out.println("******login_to_salesForce automation script ended***********");
-				}
+					
+	
+	}
+	
+	@Test
 	public static void loginClearPassword() {
 
-		System.out.println("******login_to_SalesForce automation script started***********");
-	   
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		waitForVisibility(usernameEle, 5, 2, "username textbox");
 		enterText(usernameEle,"chirag@home.com","username textbox");
@@ -61,19 +71,15 @@ public class LoginSalesForce extends BaseTest{
 					System.out.println("Testcase failed: Error message is not been be displayed");
 				}
 				
-				closeBrowser();
-				System.out.println("******login_to_salesForce automation script ended***********");
-			
-		
+						
 	}
 	
+	
+	@Test
 	public static void RememberMe() {
 		System.out.println("******login_to_SalesForce automation script started***********");
 		//String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
-		WebElement usernameEle = driver.findElement(By.id("username"));
+			WebElement usernameEle = driver.findElement(By.id("username"));
 		waitForVisibility(usernameEle, 5, 2, "username textbox");
 		enterText(usernameEle,"chirag@home.com","username textbox");
 		WebElement passwordEle = driver.findElement(By.id("password"));
@@ -92,13 +98,13 @@ public class LoginSalesForce extends BaseTest{
 				clickElement(userLogout, "Log out");
 
 	}
+	
+	
+	@Test
 	 public static void Forgotpassword4a(){ 
 
 		 System.out.println("******login_to_SalesForce automation script started***********");
 			//String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			waitForVisibility(usernameEle, 5, 2, "username textbox");
 			enterText(usernameEle,"chirag@home.com","username textbox");
@@ -112,14 +118,11 @@ public class LoginSalesForce extends BaseTest{
 			clickElement(returnTologin, "return to login");
 	
 	 }
-	
+	@Test
 	 public static void Wrongpassword4b(){ 
 		 System.out.println("******login_to_SalesForce automation script started***********");
 			//String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
-			WebElement usernameEle = driver.findElement(By.id("username"));
+					WebElement usernameEle = driver.findElement(By.id("username"));
 			waitForVisibility(usernameEle, 5, 2, "username textbox");
 			enterText(usernameEle,"123","username textbox");
 			WebElement passwordEle = driver.findElement(By.id("password"));

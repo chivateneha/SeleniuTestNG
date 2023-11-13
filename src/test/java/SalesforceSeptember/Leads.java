@@ -6,22 +6,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v116.browser.Browser;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class Leads extends BaseTest{
-
-	public static void main(String[] args) throws Exception {
-		//LeadTab();
-		//LeadsDrpdown();
-		//DefaultView();  //did not work
-		//TodaysLead();
-		CreateNewLead();    //didnot work
-	}
-	public static void LeadTab() {
+	@BeforeMethod()
+	public static void launchBrowser() {
 		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
+	    launchBrowser("chrome");
 		maximiseBrowser();
 		goToUrl("https://login.salesforce.com/");
+		
+	}
+	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	
+	@Test
+	public static void LeadTab() {
+		String expected="Home Page ~ Salesforce - Developer Edition";
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -31,18 +39,12 @@ public class Leads extends BaseTest{
 		clickElement(loginButtonEle,"login button");
 				WebElement Leads = driver.findElement(By.xpath("//a[@title='Leads Tab']"));
 				clickElement(Leads, "Leads");
+	}			
 				
-				Browser.close();
-	}
-	
+	@Test
     public static void LeadsDrpdown() {
-	 
-    	System.out.println("******login_to_SalesForce automation script started***********");
 		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
-		WebElement usernameEle = driver.findElement(By.id("username"));
+				WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
 		WebElement passwordEle = driver.findElement(By.id("password"));
@@ -61,12 +63,10 @@ public class Leads extends BaseTest{
 
 				    }
     }
+	
+	@Test
 		public static void DefaultView() throws Exception {
-			System.out.println("******login_to_SalesForce automation script started***********");
 			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -103,13 +103,9 @@ public class Leads extends BaseTest{
 						clickElement(Leads1 , "Leads");
 			
 		}
-		
+	@Test
 		public static void TodaysLead() throws Exception {
-			System.out.println("******login_to_SalesForce automation script started***********");
 			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -131,13 +127,9 @@ public class Leads extends BaseTest{
 			
 			
 		}
-		
+		@Test
 		public static void CreateNewLead() throws Exception {
-			System.out.println("******login_to_SalesForce automation script started***********");
 			String expected="Home Page ~ Salesforce - Developer Edition";
-			launchBrowser("chrome");
-			maximiseBrowser();
-			goToUrl("https://login.salesforce.com/");
 			WebElement usernameEle = driver.findElement(By.id("username"));
 			     waitForVisibility(usernameEle, 5, 2, "username textbox");
 			        enterText(usernameEle,"chirag@home.com","username textbox");

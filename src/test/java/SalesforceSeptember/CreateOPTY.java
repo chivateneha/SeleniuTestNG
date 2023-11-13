@@ -10,22 +10,29 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v116.browser.Browser;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class CreateOPTY extends BaseTest {
-
-	public static void main(String[] args) throws Exception {
-	//	ClickOpportunities();
-		//createNewOpty();
-		//OpportunityPipelineReport();
-		//OpportunityPipelineStuckReport();
-		QuarterlySummary();
+	@BeforeMethod()
+	public static void launchBrowser() {
+		System.out.println("******login_to_SalesForce automation script started***********");
+	    launchBrowser("chrome");
+		maximiseBrowser();
+		goToUrl("https://login.salesforce.com/");
+		
 	}
+	
+	@AfterMethod()
+	public static void tearDown() {
+		closeBrowser();
+		System.out.println("******login_to_salesForce automation script ended***********");
+	
+	}
+	
+	@Test
 	public static void ClickOpportunities() throws InterruptedException {
-	System.out.println("******login_to_SalesForce automation script started***********");
-	String expected="Home Page ~ Salesforce - Developer Edition";
-	launchBrowser("chrome");
-	maximiseBrowser();
-	goToUrl("https://login.salesforce.com/");
 	WebElement usernameEle = driver.findElement(By.id("username"));
 	     waitForVisibility(usernameEle, 5, 2, "username textbox");
 	        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -43,16 +50,10 @@ public class CreateOPTY extends BaseTest {
 			String list = Opportunitiesdrpdwn.getText();
 			System.out.println(list);
 			Thread.sleep(5000);
-			Browser.close();
-					}
-	
+}
+	@Test
 	public static void createNewOpty() throws InterruptedException {
-		
-		System.out.println("******login_to_SalesForce automation script started***********");
-		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
+	
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -106,10 +107,10 @@ public class CreateOPTY extends BaseTest {
     		Thread.sleep(4000);
     		driver.findElement(By.xpath("//input[@id='opp12']")).sendKeys("80");
     		Thread.sleep(6000);
-    		driver.close();
+    	
      		}
 	
-	
+	@Test
 	public static void OpportunityPipelineReport() throws Exception {
 		System.out.println("******login_to_SalesForce automation script started***********");
 		String expected="Home Page ~ Salesforce - Developer Edition";
@@ -131,18 +132,13 @@ public class CreateOPTY extends BaseTest {
 			WebElement OpportunityPipeline = driver.findElement(By.xpath("//a[contains(text(),'Opportunity Pipeline')]"));
 			clickElement(OpportunityPipeline, "Opportunity Pipeline");
 			Thread.sleep(10000);
-			Browser.close();
 			System.out.println(" completed");
 			
 			}
 	
-	
+	@Test
 	public static void OpportunityPipelineStuckReport() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
 		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -158,17 +154,12 @@ public class CreateOPTY extends BaseTest {
 			WebElement StuckOpp = driver.findElement(By.xpath("//a[contains(text(),'Stuck Opportunities')]"));
 			clickElement(StuckOpp, "StuckOpp");
 			Thread.sleep(10000);
-			Browser.close();
 			System.out.println(" completed");
 	}
 	
-	
+	@Test
 	public static void QuarterlySummary() throws Exception {
-		System.out.println("******login_to_SalesForce automation script started***********");
 		String expected="Home Page ~ Salesforce - Developer Edition";
-		launchBrowser("chrome");
-		maximiseBrowser();
-		goToUrl("https://login.salesforce.com/");
 		WebElement usernameEle = driver.findElement(By.id("username"));
 		     waitForVisibility(usernameEle, 5, 2, "username textbox");
 		        enterText(usernameEle,"chirag@home.com","username textbox");
@@ -192,7 +183,6 @@ public class CreateOPTY extends BaseTest {
 			
 			WebElement RunReport = driver.findElement(By.xpath("//input[@title='Run Report']"));
 			clickElement(RunReport, "RunReport");
-			//driver.close();
 			System.out.println("completed");
 		}
 			
